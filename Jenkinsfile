@@ -6,11 +6,11 @@ pipeline {
             AWS_DEFAULT_REGION = 'us-east-1'
     }
     stages {
-        stage('Docker'){
-            steps{
-                sh 'docker build -t my-docker-image .'
-            }
-        }
+        // stage('Docker'){
+        //     steps{
+        //         sh 'docker build -t my-docker-image .'
+        //     }
+        // }
         stage('Build') {
             agent {
                 docker { 
