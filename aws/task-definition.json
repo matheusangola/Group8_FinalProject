@@ -5,7 +5,7 @@
     "family": "finalProjectTaskDefinition",
     "containerDefinitions": [
         {
-            "name": "finalproject_group8_Image",
+            "name": "finalproject-image",
             "image": "703671926514.dkr.ecr.us-east-1.amazonaws.com/finalproject_group8:latest",
             "portMappings": [
                 {
