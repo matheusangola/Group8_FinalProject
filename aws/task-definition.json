@@ -2,7 +2,7 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "family": "finalProjectTaskDefinition",
+    "family": "finalProject-TaskDefinition",
     "containerDefinitions": [
         {
             "name": "finalproject-image",
