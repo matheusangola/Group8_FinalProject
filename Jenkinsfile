@@ -57,12 +57,18 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'finalproject_credentials', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                 sh '''
-                amazon-linux-extras install docker
-                docker build -t $AWS_DOCKER_REGISTRY/$APP_NAME .
-                aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_DOCKER_REGISTRY
-                docker push $AWS_DOCKER_REGISTRY/$APP_NAME:latest
+                    amazon-linux-extras install docker
+                    curl -fsSL https://get.docker.com/buildx | sh
+                    docker buildx create --use
+ 
+                    aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_DOCKER_REGISTRY
+ 
+                    docker buildx build \
+                    --platform linux/amd64 \
+                    -t $AWS_DOCKER_REGISTRY/$APP_NAME:latest \
+                    --push .
                 '''
-            }
+                }
             }
         }
         
