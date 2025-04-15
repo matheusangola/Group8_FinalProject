@@ -2,7 +2,9 @@ pipeline {
     agent any
     environment {
             AWS_DOCKER_REGISTRY = '703671926514.dkr.ecr.us-east-1.amazonaws.com'
-            APP_NAME = 'finalproject_group8'
+            // AWS_DOCKER_REGISTRY = '703671926514.dkr.ecr.us-east-1.amazonaws.com'
+            APP_NAME = 'finalproject-image'
+            // APP_NAME = 'finalproject_group8'
             AWS_DEFAULT_REGION = 'us-east-1'
     }
     stages {
@@ -14,8 +16,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker { 
-                    // image 'node:20.17.0-alpine'
-                    image 'node:22-alpine' 
+                    image 'node:20.17.0-alpine'
                     reuseNode true
                 }
             }
@@ -34,8 +35,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker { 
-                    // image 'node:20.17.0-alpine'
-                    image 'node:22-alpine'  
+                    image 'node:20.17.0-alpine'
                     reuseNode true
                 }
             }
@@ -81,7 +81,7 @@ pipeline {
                     yum install jq -y
 
                     LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-definition.json | jq '.taskDefinition.revision')
-                    aws ecs update-service --cluster finalProject-Cluster --service finalProject-service --task-definition finalProject-TaskDefinition:$LATEST_TD_REVISION
+                    aws ecs update-service --cluster finalProject-Cluster --service final-project-service --task-definition final-Project-Task-Definition:$LATEST_TD_REVISION
                 '''
                 }
             }

@@ -2,11 +2,11 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "family": "finalProject-TaskDefinition",
+    "family": "final-Project-Task-Definition",
     "containerDefinitions": [
         {
-            "name": "finalproject-image",
-            "image": "703671926514.dkr.ecr.us-east-1.amazonaws.com/finalproject_group8:latest",
+            "name": "final-project-image",
+            "image": "703671926514.dkr.ecr.us-east-1.amazonaws.com/finalproject-image:latest",
             "portMappings": [
                 {
                     "name": "nginx-80-tcp",
