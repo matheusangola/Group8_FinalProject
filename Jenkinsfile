@@ -14,7 +14,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker { 
-                    image 'node:20.17.0-alpine' 
+                    // image 'node:20.17.0-alpine'
+                    image 'node:22-alpine' 
                     reuseNode true
                 }
             }
@@ -22,8 +23,9 @@ pipeline {
                 sh '''
                 ls -la
                     node --version
-                    npm -version
-                    npm install
+                    npm --version
+                    # npm install
+                    npm ci
                     npm run build
                     ls -la
                 '''
@@ -32,7 +34,8 @@ pipeline {
         stage('Test') {
             agent {
                 docker { 
-                    image 'node:20.17.0-alpine' 
+                    // image 'node:20.17.0-alpine'
+                    image 'node:22-alpine'  
                     reuseNode true
                 }
             }
